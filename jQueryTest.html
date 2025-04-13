@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Email Confirmation Demo</title>
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // When the Confirm button is clicked
+      $("#confirmBtn").click(function(event) {
+        event.preventDefault(); // Prevents any default form submission if present
+
+        // Retrieve the values of the two email fields
+        const email = $("#email").val().trim();
+        const confirmEmail = $("#confirmEmail").val().trim();
+
+        // Check if either field is empty
+        if (email === "" || confirmEmail === "") {
+          alert("Please fill in both email fields.");
+          return; // Exit the function here
+        }
+
+        // Check if the two emails match
+        if (email !== confirmEmail) {
+          alert("The email addresses do not match.");
+        } else {
+          alert("Email confirmation successful!");
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Please verify your email address</h1>
+  
+  <form>
+    <div>
+      <label for="email">Email Address:</label>
+      <input type="text" id="email" name="email">
+    </div>
+    
+    <div>
+      <label for="confirmEmail">Confirm Email Address:</label>
+      <input type="text" id="confirmEmail" name="confirmEmail">
+    </div>
+
+    <button id="confirmBtn" type="submit">Confirm</button>
+  </form>
+</body>
+</html>
