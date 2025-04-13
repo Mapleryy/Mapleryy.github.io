@@ -15,27 +15,24 @@
   <script>
     $(document).ready(function() {
       $("#confirmBtn").click(function(event) {
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault(); 
 
-        // Retrieve the values and trim whitespace
         const email = $("#email").val().trim();
         const confirmEmail = $("#confirmEmail").val().trim();
 
-        // Reset messages to the default asterisk for both fields
         $("#emailMsg").text("*");
         $("#confirmEmailMsg").text("*");
 
         let valid = true;
 
-        // Check if the email field is empty
         if(email === ""){
-          $("#emailMsg").text("this field is required.");
+          $("#emailMsg").text("This field is required.");
           valid = false;
         }
 
         // Check if the confirmation field is empty
         if(confirmEmail === ""){
-          $("#confirmEmailMsg").text("this field is required.");
+          $("#confirmEmailMsg").text("This field is required.");
           valid = false;
         }
 
@@ -44,7 +41,7 @@
           if(email !== confirmEmail){
             // Remove the primary email asterisk and set an error on the confirm field
             $("#emailMsg").text("");
-            $("#confirmEmailMsg").text("this email address does no match.");
+            $("#confirmEmailMsg").text("This email address does not match.");
             valid = false;
           }
         }
@@ -64,13 +61,13 @@
     <div>
       <label for="email">Email Address:</label>
       <input type="text" id="email" name="email">
-      <span id="emailMsg" class="error">*</span>
+      <p id="emailMsg" class="error">*</p>
     </div>
     
     <div>
       <label for="confirmEmail">Confirm Email Address:</label>
       <input type="text" id="confirmEmail" name="confirmEmail">
-      <span id="confirmEmailMsg" class="error">*</span>
+      <p id="confirmEmailMsg" class="error">*</p>
     </div>
 
     <button id="confirmBtn" type="submit">Confirm</button>
