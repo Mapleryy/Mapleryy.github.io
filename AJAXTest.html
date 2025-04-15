@@ -5,22 +5,21 @@
   <title>Dog Breed Autocomplete</title>
   <script type="text/javascript">
     function checkBreed(str) {
-      if (str.length === 0) {
-        // If the input field is empty, clear whatever is in the span.
+      if (str.length === 0)
+      {
         document.getElementById("txtHint").textContent = "";
         return;
       }
       
       var xmlhttp = new XMLHttpRequest();
       
-      xmlhttp.onreadystatechange = function() {
+      xmlhttp.onreadystatechange = function() 
+      {
         if (this.readyState === 4 && this.status === 200) {
-          // Insert the PHP response directly into the txtHint span
           document.getElementById("txtHint").textContent = this.responseText;
         }
       };
       
-      // Send the GET request to the PHP file with the user input
       xmlhttp.open("GET", "DogCheck.php?dogbreed=" + encodeURIComponent(str), true);
       xmlhttp.send();
     }
@@ -33,7 +32,6 @@
     <input type="text" id="dogbreed" name="dogbreed" onkeyup="checkBreed(this.value)">
   </form>
   
-  <!-- Here, “FOUND:” is always visible, and only the span’s text changes. -->
   <p>FOUND: <span id="txtHint"></span></p>
 </body>
 </html>
