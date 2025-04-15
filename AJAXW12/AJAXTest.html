@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Dog Breed Autocomplete</title>
+  <title>Dog Breeds</title>
   <script type="text/javascript">
     // This function is called every time a key is released in the input field.
     function checkBreed(str) {
@@ -25,7 +25,7 @@
       
       // Open an asynchronous GET request to the PHP file,
       // encoding the user input to ensure it is safely transmitted.
-      xmlhttp.open("GET", "check_dog.php?dogbreed=" + encodeURIComponent(str), true);
+      xmlhttp.open("GET", "DpgCheck.php?dogbreed=" + encodeURIComponent(str), true);
       xmlhttp.send();
     }
   </script>
