@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <title>Dog Breed Autocomplete</title>
   <script type="text/javascript">
-    function checkBreed(str) {
+    function checkBreed(str) 
+    {
       if (str.length === 0)
       {
         document.getElementById("txtHint").textContent = "";
@@ -15,7 +16,8 @@
       
       xmlhttp.onreadystatechange = function() 
       {
-        if (this.readyState === 4 && this.status === 200) {
+        if (this.readyState === 4 && this.status === 200) 
+        {
           document.getElementById("txtHint").textContent = this.responseText;
         }
       };

@@ -11,7 +11,8 @@ if (isset($_GET['dogbreed']))
     
     foreach ($dogBreeds as $breed) 
     {
-        if (stripos($breed, $inputLower) === 0) {
+        if (stripos($breed, $inputLower) === 0) 
+        {
             $matches[] = $breed;
         }
     }
@@ -19,7 +20,9 @@ if (isset($_GET['dogbreed']))
     if (count($matches) > 0) 
     {
         echo implode(', ', $matches);
-    } else {
+    } 
+    else 
+    {
         echo "No match found for: " . htmlspecialchars($inputBreed);
     }
 }
