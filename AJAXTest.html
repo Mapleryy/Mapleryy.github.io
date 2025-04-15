@@ -2,42 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Dog Breeds</title>
+  <title>Dog Breed Autocomplete</title>
   <script type="text/javascript">
-    // This function is called every time a key is released in the input field.
     function checkBreed(str) {
-      // If the input is empty, clear the output area.
       if (str.length === 0) {
-        document.getElementById("txtHint").innerHTML = "";
+        // If the input field is empty, clear whatever is in the span.
+        document.getElementById("txtHint").textContent = "";
         return;
       }
       
-      // Create an XMLHttpRequest object.
       var xmlhttp = new XMLHttpRequest();
       
-      // Define a callback function that will be executed once the response is received.
       xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-          // Display the PHP response in the element with id "txtHint".
-          document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+        if (this.readyState === 4 && this.status === 200) {
+          // Insert the PHP response directly into the txtHint span
+          document.getElementById("txtHint").textContent = this.responseText;
         }
       };
       
-      // Open an asynchronous GET request to the PHP file,
-      // encoding the user input to ensure it is safely transmitted.
-      xmlhttp.open("GET", "DogCheck.php?dogbreed=" + encodeURIComponent(str), true);
+      // Send the GET request to the PHP file with the user input
+      xmlhttp.open("GET", "check_dog.php?dogbreed=" + encodeURIComponent(str), true);
       xmlhttp.send();
     }
   </script>
 </head>
 <body>
-  <h2>Dog Breed Search</h2>
-  <!-- The form where the user will enter a dog breed name -->
+  <h2>Please enter the name of the dog breed you want to lookup</h2>
   <form>
-    <label for="dogbreed">Enter Dog Breed: </label>
+    <label for="dogbreed">Dog Breed's name: </label>
     <input type="text" id="dogbreed" name="dogbreed" onkeyup="checkBreed(this.value)">
   </form>
-  <!-- This paragraph will display the result from the PHP file -->
-  <p id="txtHint"></p>
+  
+  <!-- Here, “FOUND:” is always visible, and only the span’s text changes. -->
+  <p>FOUND: <span id="txtHint"></span></p>
 </body>
 </html>

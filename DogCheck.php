@@ -1,21 +1,35 @@
 <?php
-// Check if the 'dogbreed' parameter is present in the URL.
 if (isset($_GET['dogbreed'])) {
-    // Get and trim the input
     $inputBreed = trim($_GET['dogbreed']);
     
-    // Define an array containing 6 dog breeds.
-    $dogBreeds = array("Labrador", "Beagle", "German Shepherd", "Bulldog", "Poodle", "Chihuahua");
+    // Array of dog breeds
+    $dogBreeds = array(
+        "Labrador Retriever",
+        "German Shepherd",
+        "Golden Retriever",
+        "Bulldog",
+        "Beagle",
+        "Poodle"
+    );
     
-    // Convert both the input and the array elements to lowercase for a case-insensitive comparison.
+    // For a case-insensitive comparison
     $inputBreedLower = strtolower($inputBreed);
-    $dogBreedsLower = array_map('strtolower', $dogBreeds);
+    $dogBreedsLower  = array_map('strtolower', $dogBreeds);
     
-    // Check if the input matches any of the dog breeds.
     if (in_array($inputBreedLower, $dogBreedsLower)) {
-        echo "Dog breed found: " . htmlspecialchars($inputBreed);
+        // If the breed is found, return the breed as it appears in the array
+        // so we preserve original casing/spelling.
+        // e.g. “Labrador Retriever”
+        // (Optionally, you can find exactly which array item matched.)
+        
+        // Find the matching item in the original array to preserve the exact wording
+        $index = array_search($inputBreedLower, $dogBreedsLower);
+        echo htmlspecialchars($dogBreeds[$index]);
+        
     } else {
-        echo "Dog breed '" . htmlspecialchars($inputBreed) . "' cannot be found.";
+        // If not found, just say so
+        // e.g. “No match found for: Labs”
+        echo "No match found for: " . htmlspecialchars($inputBreed);
     }
 }
 ?>
